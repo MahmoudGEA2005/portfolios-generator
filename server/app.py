@@ -21,6 +21,12 @@ app = Flask(__name__, static_folder='../frontend/dist', static_url_path='')
 # Configure the database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://neondb_owner:npg_pv9e8WXYMrRk@ep-sweet-queen-a2whfnhf-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+SQLALCHEMY_ENGINE_OPTIONS = {
+    'pool_size': 10,
+    'pool_recycle': 270,
+    'pool_pre_ping': True
+}
+
 # CORS(app, supports_credentials=True)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
