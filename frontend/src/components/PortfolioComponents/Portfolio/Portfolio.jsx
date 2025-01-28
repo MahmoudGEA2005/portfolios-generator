@@ -22,7 +22,7 @@ function Portfolio() {
           "https://portfolios-generator.onrender.com/api/data",
           {
             method: "POST",
-            credentials: "include",
+            credentials: "same-origin",
             headers: {
               "Content-Type": "application/json",
             },
@@ -51,7 +51,7 @@ function Portfolio() {
               },
               ABOUTTEXT: data["about"],
               IMGDATA: [
-                `https://portfolios-generator.onrender.com/api/${data["picture"]}`,
+                `https://portfolios-generator.onrender.com/${data["picture"]}`,
                 data["name"],
               ],
               ABOUTCARDS: [
