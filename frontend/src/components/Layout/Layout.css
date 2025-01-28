@@ -1,0 +1,168 @@
+.layout {
+  background-color: var(--mainPageBG);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.top-cr,
+.bottom-cr {
+  position: fixed;
+  width: 400px;
+}
+
+@media (max-width: 768px) {
+  .top-cr,
+  .bottom-cr {
+    width: 300px;
+  }
+}
+
+.top-cr {
+  top: 0;
+  right: 0;
+}
+
+.bottom-cr {
+  left: 0;
+  bottom: 0;
+}
+
+.layout .profile-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 99999999;
+}
+
+.layout .profile {
+  position: relative;
+}
+
+.layout .profile::after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: -10px;
+  right: 15px;
+  border: 10px solid var(--mainPageCardColor);
+  border-color: transparent transparent var(--mainPageCardColor);
+  display: none;
+}
+
+.menu-opened.profile::after {
+  display: block;
+}
+
+.layout .profile-head {
+  background-color: var(--mainPageCardColor);
+  border-radius: var(--minRadius);
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--mainShadow);
+  transition: var(--mainAnimationDuration);
+  /* width: 117px; */
+  cursor: pointer;
+  gap: 5px;
+}
+
+.layout .profile-head:hover svg,
+.layout .profile.menu-opened svg {
+  padding-left: 10px;
+}
+
+.layout .profile .profile-head > p {
+  text-transform: capitalize;
+}
+
+.layout .profile svg {
+  color: var(--logosColor);
+  transition: 0.5s;
+  font-size: 22px;
+  transition: 0.3s;
+}
+
+.layout .profile-container .profile .profile-box {
+  position: absolute;
+  top: calc(100% + 10px);
+  background-color: var(--mainPageCardColor);
+  border-radius: var(--minRadius);
+  right: 0;
+  overflow: hidden;
+  display: none;
+  box-shadow: var(--mainShadow);
+}
+
+.menu-opened ul {
+  display: block !important;
+}
+
+.profile .profile-box > li {
+  padding: 10px;
+  transition: var(--mainAnimationDuration);
+  cursor: pointer;
+}
+
+.profile .profile-box > li:first-child {
+  padding-block: 15px 10px;
+}
+
+.profile .profile-box > li:last-child {
+  padding-block: 10px 15px;
+}
+
+.profile .profile-box > li:hover {
+  background-color: #ddd;
+}
+
+.layout-card {
+  background-color: var(--mainPageCardColor);
+  width: 60vw;
+  height: 70vh;
+  position: relative;
+  border-radius: var(--maxRadius);
+  z-index: 999;
+  padding: 20px;
+  transition: var(--mainAnimationDuration);
+  box-shadow: var(--mainShadow);
+  animation: card-pulse 3s infinite 1s ease-out;
+  margin-block: 70px;
+}
+
+@media (max-width: 992px) {
+  .layout-card {
+    width: 80vw;
+  }
+}
+
+@keyframes card-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+}
+
+.layout-card.layout-children-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.layout-card:hover {
+  transform: scale(1.02);
+}

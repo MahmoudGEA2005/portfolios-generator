@@ -1,0 +1,46 @@
+.solid-link-btn {
+  position: relative;
+  border-radius: var(--minRadius);
+  color: #000;
+  padding: 5px 10px;
+  overflow: hidden;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--mainColor);
+  transition: var(--mainAnimationDuration);
+  font-size: 15px;
+  width: fit-content;
+}
+
+.solid-link-btn::before {
+  content: "";
+  background-color: var(--mainColor);
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  right: 50%;
+  transition: 0.3s;
+}
+
+.solid-link-btn::after {
+  content: "";
+  background-color: var(--mainColor);
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  z-index: -1;
+  transition: 0.3s;
+}
+
+.solid-link-btn:hover {
+  color: var(--mainColor);
+}
+
+.solid-link-btn:hover::before,
+.solid-link-btn:hover::after {
+  width: 0;
+}

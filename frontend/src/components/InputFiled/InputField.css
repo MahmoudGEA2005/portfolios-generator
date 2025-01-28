@@ -1,0 +1,37 @@
+.input-container {
+  position: relative;
+}
+
+.input-container input {
+  border: 0;
+  outline: none;
+  border-bottom: 2px solid #eee;
+  padding: 4px 30px;
+  caret-color: #bbb;
+  width: 100%;
+  margin-block: 10px;
+  transition: var(--mainAnimationDuration);
+}
+
+@media (max-width: 1200px) {
+  .input-container input {
+    margin-block: 6px;
+  }
+}
+
+.input-container input:focus {
+  box-shadow: 0 4px 4px -4px rgb(0 0 0 / 5%);
+}
+
+.input-container > *:not(input, .error) {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-60%);
+  color: #ddd;
+  left: 3px;
+  font-size: 18px;
+}
+
+.input-container input::placeholder {
+  color: var(--formMainColor);
+}

@@ -1,0 +1,45 @@
+.pseudo-container {
+  position: relative;
+  top: 19px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.pseudo-container button {
+  border: 0;
+  outline: none;
+  padding: 7px 17px;
+  color: #fff;
+  transition: var(--mainAnimationDuration);
+  position: relative;
+  z-index: 3;
+}
+
+.pseudo-container::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #558ddc;
+  z-index: 1;
+}
+
+.pseudo-container::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 50%;
+  left: 50%;
+  background-color: var(--mainColorGradient);
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  transition: var(--mainAnimationDuration);
+}
+
+.pseudo-container:hover::after {
+  width: 100%;
+  height: 100%;
+}

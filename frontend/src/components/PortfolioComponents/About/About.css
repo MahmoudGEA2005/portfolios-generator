@@ -1,0 +1,13 @@
+div.about-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    column-gap: 100px
+}
+
+@media (max-width: 768px) {
+    div.about-section {
+        flex-direction: column;
+        align-items: center;
+    }
+}

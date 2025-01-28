@@ -1,0 +1,230 @@
+.action-card {
+  background: linear-gradient(142deg, #4c54a9, #642f97);
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: bg-xy 2s ease-in-out infinite alternate;
+  background-size: 200% 200%;
+}
+
+@keyframes bg-xy {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.light-text {
+  font-size: 14px;
+  margin-block: 10px;
+  color: var(--formMainColor);
+}
+
+.action-card-box {
+  width: 81vw;
+  max-width: 1100px;
+  background-color: #fff;
+  border-radius: var(--maxRadius);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  box-shadow: 0 0 5px #00000047;
+  transition: var(--mainAnimationDuration);
+}
+
+@media (max-width: 1200px) {
+  .action-card-box {
+    flex-direction: column;
+    margin-block: 50px;
+  }
+}
+
+.action-card-box:hover {
+  transform: scale(1.018);
+}
+
+.action-card-box .wavy {
+  position: absolute;
+  z-index: 999999;
+  top: 0;
+  right: calc(50% - 95px);
+  height: 100%;
+}
+
+@media (max-width: 1200px) {
+  .action-card-box .wavy {
+    display: none;
+  }
+}
+
+.action-card-box .wavy-h {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .action-card-box .wavy-h {
+    display: block;
+    position: absolute;
+    width: 100%;
+  }
+}
+
+.action-card-box > div {
+  height: 100%;
+}
+
+.action-card-box > div:first-of-type {
+  background: linear-gradient(
+    210deg,
+    var(--mainPageSecondaryColor) 20%,
+    var(--mainPageColor)
+  );
+  width: calc(50% + 94px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+@media (max-width: 1200px) {
+  .action-card-box > div:first-of-type {
+    width: 100%;
+    height: 300px !important;
+    gap: 8px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .action-card-box > div:first-of-type {
+    min-height: 600px;
+  }
+}
+
+.action-card-box > div:first-of-type > * {
+  margin-left: -74px;
+}
+
+@media (max-width: 1200px) {
+  .action-card-box > div:first-of-type > * {
+    margin-left: 0;
+  }
+}
+
+.action-card-box > div:first-of-type > img {
+  width: 22%;
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .action-card-box > div:first-of-type > img {
+    width: 15%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .action-card-box > div:first-of-type > img {
+    margin-top: -55px;
+  }
+}
+
+.rotation {
+  animation: rotation 1s ease-in-out 1;
+}
+
+.rotation-slow {
+  animation: rotation 1.6s ease-in-out 1;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+.action-card-box > div:first-of-type > h1 {
+  color: #fff;
+}
+
+@media (max-width: 1200px) {
+  .action-card-box > div:first-of-type h1 {
+    font-size: 25px;
+  }
+}
+
+.action-card-box > div:first-of-type > p {
+  font-family: "Dancing Script", serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 23px;
+  color: #ffe7e7;
+}
+
+@media (max-width: 1200px) {
+  .action-card-box.action-medium > div:first-of-type > p {
+    margin-bottom: 70px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .action-card-box > div:first-of-type > p {
+    margin-top: -5px;
+  }
+}
+
+.action-card-box > div:last-of-type {
+  background: #fff;
+  width: calc(50% - 94px);
+}
+
+.action-card-box > div.content-centered:last-of-type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1200px) {
+  .action-card-box > div:last-of-type {
+    padding-bottom: 20px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .action-card-box > div:last-of-type {
+    min-height: 600px;
+  }
+}
+
+.welcome-button {
+  border-radius: var(--maxRadius);
+  border: 0;
+  outline: none;
+  padding: 9px 20px;
+  color: #fff;
+  background: linear-gradient(287deg, #50cae2, #642f97);
+  flex: 1;
+  margin: 0 20px;
+  transition: var(--mainAnimationDuration);
+  background-position: 100% 100%;
+  background-size: 200% 200%;
+  animation: bg-xy 3s ease-in-out infinite alternate;
+  cursor: pointer;
+}
+
+.welcome-button:hover {
+  transform: scale(1.05);
+}

@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: flask-react-app
+    env: python
+    region: oregon # Choose your region
+    buildCommand: ./render-build.sh
+    startCommand: gunicorn app:app
+    envVars:
+      - key: FLASK_ENV
+        value: production

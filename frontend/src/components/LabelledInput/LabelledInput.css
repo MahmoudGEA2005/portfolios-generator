@@ -1,0 +1,23 @@
+.labelled-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-block: 14px;
+}
+
+.labelled-input label + input,
+.labelled-input label + textarea {
+  padding: 5px 10px;
+  background-color: #fff;
+  border: 0;
+  outline: none;
+  border: 1px solid #afa6a6;
+  border-radius: var(--minRadius);
+  min-width: 100%;
+  max-width: 100%;
+}
+
+.labelled-input textarea {
+  min-height: 300px;
+  max-height: 300px;
+}

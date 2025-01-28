@@ -1,0 +1,7 @@
+.page {
+  background-image: url("../../../assets/bg_blue.png");
+  padding-top: 120px;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+}

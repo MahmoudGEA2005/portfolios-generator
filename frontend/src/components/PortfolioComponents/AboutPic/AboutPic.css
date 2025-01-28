@@ -1,0 +1,36 @@
+.about-pic {
+    position: relative;
+    width: fit-content;
+}
+
+.about-pic img {
+    border-radius: var(--maxRadius);
+    min-width: 200px;
+    max-width: 200px;
+    transform: rotate(7deg);
+}
+
+.about-pic::before {
+    content: "";
+    width: calc(100% + 7px);
+    height: calc(100% + 7px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-3deg);
+    border-radius: var(--maxRadius);
+    background-image: linear-gradient(-45deg, var(--mainColorGradient), #ffffff5c, var(--mainColorGradient));
+}
+
+.about-pic img,
+.about-pic::before {
+    transition: var(--mainAnimationDuration);
+}
+
+.about-pic:hover img {
+    transform: rotate(-3deg);
+}
+
+.about-pic:hover::before {
+    transform: translate(-50%, -50%) rotate(3deg);
+}

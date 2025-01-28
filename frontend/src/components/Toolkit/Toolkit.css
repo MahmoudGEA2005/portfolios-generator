@@ -1,0 +1,67 @@
+.toolkit-container {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0000005e;
+  z-index: 999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toolkit-container .toolkit {
+  background-color: #fff;
+  box-shadow: var(--mainShadow);
+  height: 155px;
+  width: 300px;
+  border-radius: var(--maxRadius);
+  position: relative;
+}
+
+.toolkit h1 {
+  position: absolute;
+  font-size: 16px;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 600;
+  color: var(--mainColorGradient);
+}
+
+.close-position {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+
+.close-container {
+  position: relative;
+}
+
+.close-container::before {
+  content: "";
+  --dimentions: 0;
+  width: var(--dimentions);
+  height: var(--dimentions);
+  background-color: #eae4e4;
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -54%);
+  border-radius: 50%;
+  transition: var(--mainAnimationDuration);
+}
+
+.close-container:hover::before {
+  --dimentions: 25px;
+}
+
+.close {
+  cursor: pointer;
+  font-size: 18px;
+  position: relative;
+  z-index: 3;
+}

@@ -1,0 +1,46 @@
+.trans-link-btn {
+    position: relative;
+    border-radius: var(--minRadius);
+    color: var(--mainColor);
+    padding: 5px 10px;
+    overflow: hidden;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--mainColor);
+    transition: var(--mainAnimationDuration);
+    font-size: 15px;
+    width: fit-content;
+}
+
+.trans-link-btn::before {
+    content: "";
+    background-color: var(--mainColor);
+    width: 0;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    right: 50%;
+    transition: var(--mainAnimationDuration);
+}
+
+.trans-link-btn::after {
+    content: "";
+    background-color: var(--mainColor);
+    width: 0;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    z-index: -1;
+    transition: var(--mainAnimationDuration);
+}
+
+.trans-link-btn:hover {
+    color: #000;
+}
+
+.trans-link-btn:hover::before,
+.trans-link-btn:hover::after {
+    width: 50%;
+}

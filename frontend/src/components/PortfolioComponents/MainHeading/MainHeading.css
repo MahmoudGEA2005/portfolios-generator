@@ -1,0 +1,17 @@
+.main-heading {
+    text-align: center;
+    margin: 30px auto;
+}
+
+.main-heading p {
+    color: var(--textColor);
+    font-size: 12px;
+}
+
+.main-heading h1 {
+    color: var(--mainColor);
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 20px;
+    margin-block: 5px;
+}
