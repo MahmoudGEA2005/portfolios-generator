@@ -10,7 +10,7 @@ function VerifyToken({ general, children }) {
           "https://portfolios-generator.onrender.com/api/fetcher",
           {
             method: "POST",
-            credentials: "include",
+            credentials: "same-origin",
             body: JSON.stringify({ req: "username" }),
           }
         );

@@ -42,7 +42,7 @@ function LogIn() {
     fetch("https://portfolios-generator.onrender.com/api/login", {
       method: "POST",
       body: formData,
-      credentials: "include",
+      credentials: "same-origin",
     })
       .then((response) => response.json())
       .then((result) => {

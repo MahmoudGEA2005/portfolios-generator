@@ -23,7 +23,7 @@ function Layout({ center, height, children }) {
           headers: {
             "Content-Type": "application/json",
           },
-          credentials: "include",
+          credentials: "same-origin",
           body: JSON.stringify({ req: "username" }),
         }
       );
@@ -61,7 +61,7 @@ function Layout({ center, height, children }) {
         "https://portfolios-generator.onrender.com/api/logout",
         {
           method: "POST",
-          credentials: "include",
+          credentials: "same-origin",
         }
       );
       if (response.ok) {

@@ -35,7 +35,7 @@ function CreatePortfolio() {
           "https://portfolios-generator.onrender.com/api/fetcher",
           {
             method: "POST",
-            credentials: "include",
+            credentials: "same-origin",
             headers: {
               "Content-Type": "application/json",
             },
@@ -74,7 +74,7 @@ function CreatePortfolio() {
         "https://portfolios-generator.onrender.com/api/create",
         {
           method: "POST",
-          credentials: "include",
+          credentials: "same-origin",
           body: formData,
         }
       );

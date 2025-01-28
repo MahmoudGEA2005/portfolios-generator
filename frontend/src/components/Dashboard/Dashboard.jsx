@@ -57,7 +57,7 @@ function Dashboard() {
         "https://portfolios-generator.onrender.com/api/fetcher",
         {
           method: "POST",
-          credentials: "include",
+          credentials: "same-origin",
           headers: {
             "Content-Type": "application/json",
           },
@@ -83,7 +83,7 @@ function Dashboard() {
         "https://portfolios-generator.onrender.com/api/fetcher",
         {
           method: "POST",
-          credentials: "include",
+          credentials: "same-origin",
           headers: {
             "Content-Type": "application/json",
           },
@@ -115,7 +115,7 @@ function Dashboard() {
         "https://portfolios-generator.onrender.com/api/data",
         {
           method: "POST",
-          credentials: "include",
+          credentials: "same-origin",
           headers: {
             "Content-Type": "application/json",
           },
@@ -169,7 +169,7 @@ function Dashboard() {
         "https://portfolios-generator.onrender.com/api/logout",
         {
           method: "POST",
-          credentials: "include",
+          credentials: "same-origin",
         }
       );
       if (response.ok) {
@@ -195,7 +195,7 @@ function Dashboard() {
         "https://portfolios-generator.onrender.com/api/update",
         {
           method: "POST",
-          credentials: "include",
+          credentials: "same-origin",
           body: formData,
         }
       );
@@ -223,7 +223,7 @@ function Dashboard() {
           "https://portfolios-generator.onrender.com/api/update",
           {
             method: "POST",
-            credentials: "include",
+            credentials: "same-origin",
             body: sentData,
           }
         );
@@ -429,7 +429,7 @@ function Dashboard() {
           "https://portfolios-generator.onrender.com/api/admin",
           {
             method: "POST",
-            credentials: "include",
+            credentials: "same-origin",
             headers: {
               "Content-Type": "application/json",
             },
@@ -455,7 +455,7 @@ function Dashboard() {
         "https://portfolios-generator.onrender.com/api/admin",
         {
           method: "POST",
-          credentials: "include",
+          credentials: "same-origin",
           headers: {
             "Content-Type": "application/json",
           },

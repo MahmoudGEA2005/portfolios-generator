@@ -95,7 +95,7 @@ function Register() {
     fetch("https://portfolios-generator.onrender.com/api/register", {
       method: "POST",
       body: formData,
-      credentials: "include",
+      credentials: "same-origin",
     })
       .then((response) => response.json())
       .then((result) => {

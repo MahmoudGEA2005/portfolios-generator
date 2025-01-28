@@ -22,7 +22,7 @@ function Permissions({
           "https://portfolios-generator.onrender.com/api/admin",
           {
             method: "POST",
-            credentials: "include",
+            credentials: "same-origin",
             headers: {
               "Content-Type": "application/json",
             },
