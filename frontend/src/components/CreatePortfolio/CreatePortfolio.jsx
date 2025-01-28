@@ -32,7 +32,7 @@ function CreatePortfolio() {
     const fetchUsersPorts = async () => {
       try {
         const response = await fetch(
-          "https://nameless-oasis-38481-2bd1b8ebfc5e.herokuapp.com/fetcher",
+          "https://portfolios-generator.onrender.com/api/fetcher",
           {
             method: "POST",
             credentials: "include",
@@ -71,7 +71,7 @@ function CreatePortfolio() {
 
     try {
       const response = await fetch(
-        "https://nameless-oasis-38481-2bd1b8ebfc5e.herokuapp.com/create",
+        "https://portfolios-generator.onrender.com/api/create",
         {
           method: "POST",
           credentials: "include",

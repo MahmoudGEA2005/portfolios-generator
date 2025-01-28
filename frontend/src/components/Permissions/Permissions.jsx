@@ -19,7 +19,7 @@ function Permissions({
     if (userRow.admin.toString() !== data.permission) {
       try {
         const response = await fetch(
-          "https://nameless-oasis-38481-2bd1b8ebfc5e.herokuapp.com/admin",
+          "https://portfolios-generator.onrender.com/api/admin",
           {
             method: "POST",
             credentials: "include",

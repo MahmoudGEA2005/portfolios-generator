@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, jsonify, make_response, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS
+# from flask_cors import CORS
 import uuid
 import bcrypt
 from flask_jwt_extended import (create_access_token, set_access_cookies, JWTManager, jwt_required, get_jwt_identity, unset_jwt_cookies)
@@ -21,7 +21,7 @@ app = Flask(__name__, static_folder='../frontend/dist', static_url_path='')
 # Configure the database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://neondb_owner:npg_pv9e8WXYMrRk@ep-sweet-queen-a2whfnhf-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-CORS(app, supports_credentials=True)
+# CORS(app, supports_credentials=True)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
@@ -145,7 +145,7 @@ def serve_frontend():
 def not_found(e):
     return send_from_directory(app.static_folder, 'index.html')
 
-@app.route('/register', methods=['POST'])
+@app.route('/api/register', methods=['POST'])
 def register():
     response = [{"state": "errors"}]
     fname = request.form.get('fname')
@@ -185,19 +185,19 @@ def register():
     access_token = create_access_token(identity=user_id)
 
     response = jsonify({"message": "User registered successfully"})
-    # set_access_cookies(response, access_token)
+    set_access_cookies(response, access_token)
     
-    response.set_cookie(
-        'access_token_cookie', 
-        access_token, 
-        max_age=86400, 
-        secure=True,  # Set this to True when using HTTPS
-        samesite='None'  # Allow cross-site requests (needed for cross-origin)
-    )
+    # response.set_cookie(
+    #     'access_token_cookie', 
+    #     access_token, 
+    #     max_age=86400, 
+    #     secure=True,  # Set this to True when using HTTPS
+    #     samesite='None'  # Allow cross-site requests (needed for cross-origin)
+    # )
 
     return response
 
-@app.route("/login", methods=["POST"])
+@app.route("/api/login", methods=["POST"])
 def login():
     response = [{"state": "errors"}]
     email = request.form.get("email")
@@ -217,17 +217,17 @@ def login():
         if is_password_correct:
             access_token = create_access_token(identity=user.user_id)
             response = jsonify({"message": "Logged in successfully"})
-            # set_access_cookies(response, access_token)
+            set_access_cookies(response, access_token)
 
-            response.set_cookie(
-                'access_token_cookie', 
-                access_token, 
-                max_age=86400, 
-                secure=True,  # Set this to True when using HTTPS
-                samesite='None',  # Allow cross-site requests (needed for cross-origin)
-                # domain='https://nameless-oasis-38481-2bd1b8ebfc5e.herokuapp.com/',
-                httponly=True
-            )
+            # response.set_cookie(
+            #     'access_token_cookie', 
+            #     access_token, 
+            #     max_age=86400, 
+            #     secure=True,  # Set this to True when using HTTPS
+            #     samesite='None',  # Allow cross-site requests (needed for cross-origin)
+            #     # domain='https://nameless-oasis-38481-2bd1b8ebfc5e.herokuapp.com/',
+            #     httponly=True
+            # )
 
             return response
         else:
@@ -238,19 +238,16 @@ def login():
         return response
     return jsonify({"segma": "h"})
 
-@app.route("/logout", methods=["POST"])
+@app.route("/api/logout", methods=["POST"])
 def logout():
     response = jsonify({"message": "Logged Out"})
     response.set_cookie(
                     'access_token_cookie', 
-                    '', 
-                    max_age=86400, 
-                    secure=True,  # Set this to True when using HTTPS
-                    samesite='None'  # Allow cross-site requests (needed for cross-origin)
+                    ''
                 )
     return response
 
-@app.route("/create", methods=["POST"])
+@app.route("/api/create", methods=["POST"])
 @jwt_required()
 def create():
     design_id = int(request.form.get("design_id"))
@@ -298,7 +295,7 @@ def create():
         db.session.commit()
     return jsonify({"message": "request receievd"})
 
-@app.route("/update", methods=["POST"])
+@app.route("/api//update", methods=["POST"])
 @jwt_required()
 def update():
     user_id = get_jwt_identity()
@@ -349,7 +346,7 @@ def data():
         data_dict['picture'] = data_dict['picture'].replace("\\", "/")
     return jsonify({"data": data_dict})
 
-@app.route("/fetcher", methods=["POST"])
+@app.route("/api/fetcher", methods=["POST"])
 @jwt_required()
 def fetcher():
     user_id = get_jwt_identity()
@@ -369,7 +366,7 @@ def fetcher():
     else:
         return jsonify({"username": "faild"})
 
-@app.route("/admin", methods=["POST"])
+@app.route("/api/admin", methods=["POST"])
 @jwt_required()
 def admin():
     req = request.get_json()

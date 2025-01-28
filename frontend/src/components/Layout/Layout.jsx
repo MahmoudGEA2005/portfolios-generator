@@ -17,7 +17,7 @@ function Layout({ center, height, children }) {
   const fetchName = async () => {
     try {
       const response = await fetch(
-        "https://nameless-oasis-38481-2bd1b8ebfc5e.herokuapp.com/fetcher",
+        "https://portfolios-generator.onrender.com/api/fetcher",
         {
           method: "POST",
           headers: {
@@ -58,7 +58,7 @@ function Layout({ center, height, children }) {
   const logout = async () => {
     try {
       const response = await fetch(
-        "https://nameless-oasis-38481-2bd1b8ebfc5e.herokuapp.com/logout",
+        "https://portfolios-generator.onrender.com/api/logout",
         {
           method: "POST",
           credentials: "include",

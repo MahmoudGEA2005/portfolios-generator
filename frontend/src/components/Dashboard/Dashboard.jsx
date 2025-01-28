@@ -54,7 +54,7 @@ function Dashboard() {
   const fetchUsersPorts = async () => {
     try {
       const response = await fetch(
-        "https://nameless-oasis-38481-2bd1b8ebfc5e.herokuapp.com/fetcher",
+        "https://portfolios-generator.onrender.com/api/fetcher",
         {
           method: "POST",
           credentials: "include",
@@ -80,7 +80,7 @@ function Dashboard() {
   const fetchUserData = async () => {
     try {
       const response = await fetch(
-        "https://nameless-oasis-38481-2bd1b8ebfc5e.herokuapp.com/fetcher",
+        "https://portfolios-generator.onrender.com/api/fetcher",
         {
           method: "POST",
           credentials: "include",
@@ -112,7 +112,7 @@ function Dashboard() {
   const fetchUserTemplateData = async (designId) => {
     try {
       const response = await fetch(
-        "https://nameless-oasis-38481-2bd1b8ebfc5e.herokuapp.com/api/data",
+        "https://portfolios-generator.onrender.com/api/data",
         {
           method: "POST",
           credentials: "include",
@@ -127,7 +127,7 @@ function Dashboard() {
           const data = await response.json();
           data.data[
             "picture"
-          ] = `https://nameless-oasis-38481-2bd1b8ebfc5e.herokuapp.com/${data.data["picture"]}`;
+          ] = `https://portfolios-generator.onrender.com/${data.data["picture"]}`;
           const { user_id, id, picture, ...coreData } = data.data;
           setPortfolioImg(picture);
           templateForm.reset(coreData);
@@ -166,7 +166,7 @@ function Dashboard() {
   const logout = async () => {
     try {
       const response = await fetch(
-        "https://nameless-oasis-38481-2bd1b8ebfc5e.herokuapp.com/logout",
+        "https://portfolios-generator.onrender.com/api/logout",
         {
           method: "POST",
           credentials: "include",
@@ -192,7 +192,7 @@ function Dashboard() {
     formData.append("request", "design1");
     try {
       const response = await fetch(
-        "https://nameless-oasis-38481-2bd1b8ebfc5e.herokuapp.com/update",
+        "https://portfolios-generator.onrender.com/api/update",
         {
           method: "POST",
           credentials: "include",
@@ -220,7 +220,7 @@ function Dashboard() {
     if (counter > 1) {
       try {
         const response = await fetch(
-          "https://nameless-oasis-38481-2bd1b8ebfc5e.herokuapp.com/update",
+          "https://portfolios-generator.onrender.com/api/update",
           {
             method: "POST",
             credentials: "include",
@@ -426,7 +426,7 @@ function Dashboard() {
     if (isAdmin) {
       try {
         const response = await fetch(
-          "https://nameless-oasis-38481-2bd1b8ebfc5e.herokuapp.com/admin",
+          "https://portfolios-generator.onrender.com/api/admin",
           {
             method: "POST",
             credentials: "include",
@@ -452,7 +452,7 @@ function Dashboard() {
   const deleteUser = async (targetUser, currentUsername) => {
     try {
       const response = await fetch(
-        "https://nameless-oasis-38481-2bd1b8ebfc5e.herokuapp.com/admin",
+        "https://portfolios-generator.onrender.com/api/admin",
         {
           method: "POST",
           credentials: "include",

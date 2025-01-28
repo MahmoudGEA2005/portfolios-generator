@@ -92,7 +92,7 @@ function Register() {
       formData.append(key, value);
     });
 
-    fetch("https://nameless-oasis-38481-2bd1b8ebfc5e.herokuapp.com/register", {
+    fetch("https://portfolios-generator.onrender.com/api/register", {
       method: "POST",
       body: formData,
       credentials: "include",

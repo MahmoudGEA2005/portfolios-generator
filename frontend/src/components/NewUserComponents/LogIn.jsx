@@ -39,7 +39,7 @@ function LogIn() {
       formData.append(key, value);
     });
 
-    fetch("https://nameless-oasis-38481-2bd1b8ebfc5e.herokuapp.com/login", {
+    fetch("https://portfolios-generator.onrender.com/api/login", {
       method: "POST",
       body: formData,
       credentials: "include",
