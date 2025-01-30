@@ -1,6 +1,5 @@
 from flask import Flask, request, render_template, jsonify, make_response, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
-# from flask_cors import CORS
 import uuid
 import bcrypt
 from flask_jwt_extended import (create_access_token, set_access_cookies, JWTManager, jwt_required, get_jwt_identity, unset_jwt_cookies)
@@ -11,6 +10,7 @@ from flask_migrate import Migrate
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.ext.mutable import MutableList 
 from PIL import Image
+import boto3
 
 
 
@@ -39,6 +39,7 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=1)
 app.config['JWT_TOKEN_LOCATION'] = ['cookies']
 app.config['JWT_COOKIE_CSRF_PROTECT'] = False  # Optional, if you are not using CSRF protection
 
+# AWS
 
 
 AWS_ACCESS_KEY = os.getenv('AWS_ACCESS_KEY_ID')
@@ -46,6 +47,13 @@ AWS_SECRET_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 AWS_BUCKET_NAME = "portfolios-generator-imgs"
 AWS_REGION = "eu-north-1"
 
+s3 = boto3.client("s3", aws_access_key_id=AWS_ACCESS_KEY, aws_secret_access_key=AWS_SECRET_KEY, region_name=AWS_REGION)
+
+def upload_to_s3(file, bucket_name, folder="uploads"):
+    file_ext = file.filename.split(".")[-1]
+    filename = f"{uuid.uuid4().hex}.{file_ext}"
+    s3.upload_fileobj(file, bucket_name, f"{folder}/{filename}", ExtraArgs={"ACL": "public-read"})
+    return f"https://{bucket_name}.s3.{AWS_REGION}.amazonaws.com/{folder}/{filename}"
 
 jwt = JWTManager(app)
 
@@ -286,18 +294,19 @@ def create():
         if 'picture' in request.files:
             picture_file = request.files['picture']
             if picture_file and picture_file.filename != '':
-                root_picture_filename = secure_filename(picture_file.filename)
-                picture_filename = f"{uuid.uuid4().hex}_{root_picture_filename}"
-                picture_path = os.path.join('static', 'imgUploads', picture_filename)
+                # root_picture_filename = secure_filename(picture_file.filename)
+                # # picture_filename = f"{uuid.uuid4().hex}_{root_picture_filename}"
+                
 
-                temp_path = os.path.join('static', 'imgUploads', f"temp_{picture_filename}")
-                picture_file.save(temp_path)
+                # temp_path = os.path.join('static', 'imgUploads', f"temp_{picture_filename}")
+                # picture_file.save(temp_path)
 
-                compress_image(temp_path, picture_path)
+                # compress_image(temp_path, picture_path)
 
-                os.remove(temp_path)
+                # os.remove(temp_path)
 
-                picture = picture_path
+                # picture = picture_path
+                picture = upload_to_s3(picture_file, AWS_BUCKET_NAME)
                 
         portfolio = Design1(user_id=user_id, name=name, job_title=job_title, job_title_logo=job_title_logo, cv_link=cv_link, email=email, about=about, card1title=card1title, card1info=card1info, card2title=card2title, card2info=card2info, aboutlinkonelabel=aboutlinkonelabel, aboutlinkone=aboutlinkone, aboutlinktwolabel=aboutlinktwolabel, aboutlinktwo=aboutlinktwo, github=github, youtube=youtube, linkedin=linkedin, picture=picture)
         users_ports = UsersPortfolios.query.filter_by(user_id=user_id).first()
