@@ -52,7 +52,7 @@ s3 = boto3.client("s3", aws_access_key_id=AWS_ACCESS_KEY, aws_secret_access_key=
 def upload_to_s3(file, bucket_name, folder="uploads"):
     file_ext = file.filename.split(".")[-1]
     filename = f"{uuid.uuid4().hex}.{file_ext}"
-    s3.upload_fileobj(file, bucket_name, f"{folder}/{filename}", ExtraArgs={"ACL": "public-read"})
+    s3.upload_fileobj(file, bucket_name, f"{folder}/{filename}")
     return f"https://{bucket_name}.s3.{AWS_REGION}.amazonaws.com/{folder}/{filename}"
 
 jwt = JWTManager(app)
