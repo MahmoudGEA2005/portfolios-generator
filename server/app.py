@@ -39,16 +39,12 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=1)
 app.config['JWT_TOKEN_LOCATION'] = ['cookies']
 app.config['JWT_COOKIE_CSRF_PROTECT'] = False  # Optional, if you are not using CSRF protection
 
-<<<<<<< HEAD
-=======
-# AWS
 
 
 AWS_ACCESS_KEY = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 AWS_BUCKET_NAME = "portfolios-generator-imgs"
 AWS_REGION = "eu-north-1"
->>>>>>> a1634e1 (env)
 
 
 jwt = JWTManager(app)
