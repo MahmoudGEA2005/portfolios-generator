@@ -50,10 +50,7 @@ function Portfolio() {
                 wordLogo: data["job_title_logo"],
               },
               ABOUTTEXT: data["about"],
-              IMGDATA: [
-                `https://portfolios-generator.onrender.com/${data["picture"]}`,
-                data["name"],
-              ],
+              IMGDATA: [`${data["picture"]}`, data["name"]],
               ABOUTCARDS: [
                 {
                   icon: faCertificate,
