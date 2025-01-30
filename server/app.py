@@ -404,8 +404,10 @@ def admin():
             target_user = User.query.filter_by(user_id=user_id).first()
             target_templates = UsersPortfolios.filter_by(user_id=user_id).first()
             target_design1 = Design1.query.filter_by(user_id=user_id).first()
-            if (target_templates) db.session.delete(target_templates)
-            if (target_design1) db.session.delete(target_design1)
+            if (target_templates):
+                db.session.delete(target_templates)
+            if (target_design1):
+                db.session.delete(target_design1)
             db.session.delete(target_user)
             db.session.commit()
         return jsonify({"m": "n"})
