@@ -18,7 +18,7 @@ function LabelledInput({
           {...register(field.name, {
             required: `${field.labelName} is required`,
           })}
-          accept={field.name === "picture" ? "/image" : undefined}
+          accept={field.name === "picture" ? "image/*" : undefined}
           readOnly={readOnly}
         />
       ) : (
