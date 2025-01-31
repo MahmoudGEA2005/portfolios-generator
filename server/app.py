@@ -84,7 +84,7 @@ def test_database_connection(max_retries=10, delay=1):
             else:
                 raise Exception("Failed to connect to the database after multiple retries.")
 
-@app.before_first_request
+@app.before_request
 def initialize_database():
     """
     Ensure the database connection is ready before handling requests.
