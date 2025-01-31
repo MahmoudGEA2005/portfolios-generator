@@ -51,7 +51,7 @@ export const formFields0 = [
   },
   {
     name: "aboutlinkone",
-    type: "text",
+    type: "url",
     labelName: "First About Link",
   },
   {
@@ -61,7 +61,7 @@ export const formFields0 = [
   },
   {
     name: "aboutlinktwo",
-    type: "text",
+    type: "url",
     labelName: "Second About Link",
   },
   {
