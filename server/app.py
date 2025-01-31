@@ -66,7 +66,7 @@ from sqlalchemy import text
 from sqlalchemy.exc import OperationalError
 from time import sleep
 
-def test_database_connection(max_retries=5, delay=1):
+def test_database_connection(max_retries=10, delay=1):
     """
     Test the database connection by executing a simple query.
     Retry until the database responds or the maximum number of retries is reached.
@@ -83,6 +83,17 @@ def test_database_connection(max_retries=5, delay=1):
                 continue
             else:
                 raise Exception("Failed to connect to the database after multiple retries.")
+
+@app.before_first_request
+def initialize_database():
+    """
+    Ensure the database connection is ready before handling requests.
+    """
+    try:
+        test_database_connection()
+        print("Database connection initialized successfully.")
+    except Exception as e:
+        print(f"Failed to initialize database connection: {e}")
 
 def compress_image(image_path, output_path):
     img = Image.open(image_path)
