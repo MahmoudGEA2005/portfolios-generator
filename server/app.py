@@ -62,6 +62,28 @@ MAX_IMAGE_SIZE = (800, 800)
 QUALITY = 85
 
 
+from sqlalchemy import text
+from sqlalchemy.exc import OperationalError
+from time import sleep
+
+def test_database_connection(max_retries=5, delay=1):
+    """
+    Test the database connection by executing a simple query.
+    Retry until the database responds or the maximum number of retries is reached.
+    """
+    for attempt in range(max_retries):
+        try:
+            # Execute a simple query to test the connection
+            db.session.execute(text("SELECT 1")).fetchall()
+            return True  # Connection successful
+        except OperationalError as e:
+            print(f"Database connection failed (attempt {attempt + 1}/{max_retries}): {e}")
+            if attempt < max_retries - 1:
+                sleep(delay)  # Wait before retrying
+                continue
+            else:
+                raise Exception("Failed to connect to the database after multiple retries.")
+
 def compress_image(image_path, output_path):
     img = Image.open(image_path)
 
@@ -194,7 +216,7 @@ def register():
         return jsonify(response)
 
     hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-
+    test_database_connection();
     user_id = str(uuid.uuid4())
     aUser = User(fname=fname, lname=lname, username=username, email=email, password=hashed_password.decode('utf-8'), user_id=user_id)
     templates = UsersPortfolios(user_id=user_id, users_templates=[])
@@ -222,7 +244,7 @@ def login():
     response = [{"state": "errors"}]
     email = request.form.get("email")
     password = request.form.get("password")
-
+    test_database_connection();
     if not email:
         response.append({"is_error": True, "message": "Email can't be empty", "error_type": "empty_email", "error_code": 409})
     if not password:
@@ -260,6 +282,7 @@ def login():
 
 @app.route("/api/logout", methods=["POST"])
 def logout():
+    test_database_connection();
     response = jsonify({"message": "Logged Out"})
     response.set_cookie(
                     'access_token_cookie', 
@@ -270,6 +293,7 @@ def logout():
 @app.route("/api/create", methods=["POST"])
 @jwt_required()
 def create():
+    test_database_connection();
     design_id = int(request.form.get("design_id"))
     if design_id == 1:
         name = request.form.get("name")
@@ -319,6 +343,7 @@ def create():
 @app.route("/api//update", methods=["POST"])
 @jwt_required()
 def update():
+    test_database_connection();
     user_id = get_jwt_identity()
     req = request.form
     escape = ["design_id", "picture", "request"]
@@ -371,6 +396,7 @@ def update():
 @app.route("/api/data", methods=["POST"])
 @jwt_required()
 def data():
+    test_database_connection();
     user_id = get_jwt_identity()
     portfolio_data = Design1.query.filter_by(user_id=user_id).first();
     data_dict = {key: value for key, value in portfolio_data.__dict__.items() if not key.startswith("_")}
@@ -381,6 +407,7 @@ def data():
 @app.route("/api/fetcher", methods=["POST"])
 @jwt_required()
 def fetcher():
+    test_database_connection();
     user_id = get_jwt_identity()
     user = User.query.filter_by(user_id=user_id).first()
     req = request.get_json("req")
@@ -401,6 +428,7 @@ def fetcher():
 @app.route("/api/admin", methods=["POST"])
 @jwt_required()
 def admin():
+    test_database_connection();
     req = request.get_json()
     if req["req"] == "users_data":
         print("debug")
