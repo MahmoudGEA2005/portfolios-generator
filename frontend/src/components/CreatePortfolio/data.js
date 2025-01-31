@@ -46,7 +46,7 @@ export const formFields = [
   },
   {
     name: "aboutlinkonelabel",
-    type: "url",
+    type: "text",
     labelName: "First About Link's Label",
   },
   {
@@ -56,8 +56,8 @@ export const formFields = [
   },
   {
     name: "aboutlinktwolabel",
-    type: "url",
-    labelName: "Second About Link Label",
+    type: "text",
+    labelName: "Second About Link's Label",
   },
   {
     name: "aboutlinktwo",
