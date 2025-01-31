@@ -328,19 +328,30 @@ def update():
         rec_data = req.items()
         updated_values = {}
         if "picture" in request.files:
-            old_img = Design1.query.filter_by(user_id=user_id).first().picture
-            picture = None
+            # old_img = Design1.query.filter_by(user_id=user_id).first().picture
+            # picture = None
+            # picture_file = request.files['picture']
+            # if picture_file and picture_file.filename != '':
+            #     root_picture_filename = secure_filename(picture_file.filename)
+            #     picture_filename = f"{uuid.uuid4().hex}_{root_picture_filename}"
+            #     picture_path = os.path.join('static', 'imgUploads', picture_filename)
+            #     picture_file.save(picture_path)
+            #     if old_img and os.path.exists(old_img):
+            #         print(old_img)
+            #         os.remove(old_img)                
+            #     picture = picture_path
+            #     updated_values["picture"] = picture
             picture_file = request.files['picture']
             if picture_file and picture_file.filename != '':
-                root_picture_filename = secure_filename(picture_file.filename)
-                picture_filename = f"{uuid.uuid4().hex}_{root_picture_filename}"
-                picture_path = os.path.join('static', 'imgUploads', picture_filename)
-                picture_file.save(picture_path)
-                if old_img and os.path.exists(old_img):
-                    print(old_img)
-                    os.remove(old_img)                
-                picture = picture_path
-                updated_values["picture"] = picture
+                old_img_url = design_data.picture
+                if old_img_url:
+                    old_img_key = old_img_url.split(f"https://{AWS_BUCKET_NAME}.s3.{AWS_REGION}.amazonaws.com/")[-1]
+                    try:
+                        s3.delete_object(Bucket=AWS_BUCKET_NAME, key=old_img_key)
+                    except Exception as e:
+                        print("error")
+                new_img_url = upload_to_s3(picture_file, AWS_BUCKET_NAME)
+                updated_values["picture"] = new_img_url
         for key, value in rec_data:
             if key not in escape:
                 if value != design_data_dict[key]:
