@@ -402,7 +402,7 @@ def admin():
         user_id = request.get_json("user_id")["user_id"]
         if user_id:
             target_user = User.query.filter_by(user_id=user_id).first()
-            target_templates = UsersPortfolios.filter_by(user_id=user_id).first()
+            target_templates = UsersPortfolios.query.filter_by(user_id=user_id).first()
             target_design1 = Design1.query.filter_by(user_id=user_id).first()
             if (target_templates):
                 db.session.delete(target_templates)
