@@ -125,7 +125,6 @@ function Dashboard() {
       if (response.ok) {
         try {
           const data = await response.json();
-          data.data["picture"] = data.data["picture"];
           const { user_id, id, picture, ...coreData } = data.data;
           setPortfolioImg(picture);
           templateForm.reset(coreData);
